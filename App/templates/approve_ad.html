@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Утверждение объявлений{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Утвердить объявления</h1>
+
+    {% if App %}
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Утвердить</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ad in App %}
+                <tr>
+                    <td>{{ ad.id }}</td>
+                    <td>{{ ad.title }}</td>
+                    <td>{{ ad.description|truncatewords:20 }}</td>
+                    <td><input type="checkbox" name="{{ ad.id }}" value="approve"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button type="submit">Утвердить выбранные</button>
+    </form>
+    {% else %}
+    <p>Нет объявлений для утверждения.</p>
+    {% endif %}
+</div>
+{% endblock %}

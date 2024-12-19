@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Мой Сайт</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'about' %}">О нас</a></li>
+                <li><a href="{% url 'contact' %}">Контакт</a></li>
+                <!-- Ссылка на создание объявления -->
+                <li><a href="{% url 'create_ad' %}">Создать</a></li>
+                <!-- Ссылка на утверждение объявлений -->
+                <li><a href="{% url 'approve_ad' %}">Утвердить</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>© Мой Сайт 2023</p>
+    </footer>
+</body>
+</html>
